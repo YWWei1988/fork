@@ -1,0 +1,25 @@
+name: Fork
+on:
+  workflow_dispatch:
+
+#  schedule:
+#    - cron: 0 8 */5 * *
+
+jobs: 
+  build:
+    runs-on: ubuntu-20.04
+    name: fork仓库
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: fork
+      uses: danshui-git/synchronise-forks@main
+      with:
+        github_token: ${{ secrets.REPO_TOKEN }}
+        upstream_repository: kiddin9/openwrt-packages
+        upstream_branch: master
+        target_repository: YWWei1988/openwrt-packages
+        target_branch: master
+        force: true
+        tags: false
